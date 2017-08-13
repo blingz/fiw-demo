@@ -1,7 +1,7 @@
-#  🌰 脚手架例子 🌰
+#  🌰 Demo栗子 🌰
 
 ### 安装
-- 准备FibJS环境，参考 <a href="http://fibjs.org/">http://fibjs.org </a>
+- 准备FibJS环境，参考 <a href="http://fibjs.org/">http://fibjs.org </a>
 - 初始化依赖
 ```sh
 npm install
@@ -11,6 +11,9 @@ npm install
 ```sh
 chmod +x ./run
 ./run start
+或者
+cd src
+fibjs index.js
 ```
 
 ### 浏览器预览
@@ -22,12 +25,12 @@ chmod +x ./run
 ### 功能说明
 1. 支持热更新 ☀️
 2. 支持子路由 ☀️
-3. 支持多种数据库和连接池(😂采用fib-pool嘛)  ☀️
+3. 支持多种数据库和连接池 (😂采用fib-pool嘛)  ☀️
 4. 支持session(部分)  ☀️
 5. 支持配置文件读取(可注释的json文件)  ☀️
-6. TODO 打包编译为jsc 🌧️
-7. TODO Self-Zip打包exe 🌧️
-8. TODO Vue前端脚手架 🌧️️
+6. TODO 打包编译为jsc 🌧️
+7. TODO Self-Zip打包exe  🌧️
+8. TODO Vue前端脚手架  🌧️️
 
 ---
 
