@@ -1,0 +1,7 @@
+{
+   "type": "console", // console or file
+   "levels": [0,1,2,3,4,5,6,7], //console.FATAL, console.ALERT, console.CRIT, console.ERROR, console.WARN, console.NOTICE, console.INFO, console.DEBUG
+   "path": "../logs/log-%s.log",  	// 必选项, 日志输出路径
+   "split": "day",  // 选项，可选值为 "day", "hour", "minute", "###k", "###m", "###g"
+   "count": 128 		// 选项，可选范围为 2-128，指定此项时必须提供 split
+}

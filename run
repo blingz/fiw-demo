@@ -1,0 +1,92 @@
+#! /bin/sh
+
+# ====================
+# admin customization
+# ====================
+#PATH="/sbin:/bin:/usr/sbin:/usr/bin"
+DEAMON_BIN="fibjs"  #or /usr/bin/$DEAMON_BIN
+# ====================
+
+# ====================
+# developer customization
+# ====================
+DEAMON_APP_NAME="fiw-demo"
+DAEMON_MAIN="./index.js"
+DAEMON_MAIN_REGULAR="fibjs \.\/index\.js"
+DAEMON_DESC="App for $DEAMON_APP_NAME"
+DAEMON_LOG_REGULAR="./logs/log-[0-9]*\.log"
+DAEMON_TEST="./test/test.js"
+DAEMON_TYPE="app"
+# ====================
+
+
+
+do_start() {
+  cd ./src
+  echo "Starting $DAEMON_DESC ..."
+  exec $DEAMON_BIN $DAEMON_MAIN $DAEMON_TYPE=$DEAMON_APP_NAME   # > /dev/null & 
+  cd ..
+  return 0
+}
+
+do_stop() {
+  echo "Stopping $DAEMON_DESC ..."
+  os=`uname -a|awk '{print $1}'`
+  if [ "$os" == "Darwin" ]; then
+    ps aux|grep "$DAEMON_MAIN_REGULAR $DAEMON_TYPE=$DEAMON_APP_NAME"|awk '{print $2}'|xargs kill -9
+  else
+    ps aux|grep "$DAEMON_MAIN_REGULAR $DAEMON_TYPE=$DEAMON_APP_NAME"|grep -v grep|awk '{print $2}'|xargs kill -9 
+  fi
+  return 0
+}
+
+do_status() {
+  os=`uname -a|awk '{print $1}'`
+  if [ "$os" == "Darwin" ]; then
+    ps aux|grep "$DAEMON_MAIN_REGULAR $DAEMON_TYPE=$DEAMON_APP_NAME"
+  else
+    ps aux|grep "$DAEMON_MAIN_REGULAR $DAEMON_TYPE=$DEAMON_APP_NAME"
+  fi
+  return 0
+}
+
+do_test() {
+  echo "Testing $DAEMON_DESC ..."
+  echo `$DEAMON_BIN $DAEMON_TEST $DAEMON_TYPE=$DEAMON_APP_NAME `
+  return 0
+}
+
+do_log() {
+  find ./logs -type f -regex "$DAEMON_LOG_REGULAR" | sort -r | head -n 1 | xargs tail -f
+  return 0
+}
+
+case "$1" in
+  start)
+    do_start
+    ;;
+  stop)
+    do_stop
+    ;;
+  status)
+    do_status
+    ;;
+  restart)
+    do_stop
+    sleep 1
+    do_start
+    ;;
+  test)
+    do_test
+    ;;
+  log)
+    do_log
+    ;;
+  *)
+  
+  echo "Usage: run {start|stop|restart|test|status|log}" >&2
+  exit 3
+  ;;
+esac
+
+:

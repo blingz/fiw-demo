@@ -1,0 +1,14 @@
+{
+  "name": "fiw-demo",
+  "version": "0.1.0",
+  "description": "fiw demo",
+  "author": "Blingz",
+  "dependencies": {
+    "fib-pool": "^1.2.0",
+    "fib-kv": "^1.0.5",
+    "fiw-config": "https://github.com/blingz/fiw-config",
+    "fiw-db": "https://github.com/blingz/fiw-db",
+    "fiw-session": "https://github.com/blingz/fiw-session",
+    "fiw-router": "https://github.com/blingz/fiw-router"
+  }
+}

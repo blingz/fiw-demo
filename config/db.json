@@ -1,0 +1,5 @@
+{
+  "url"      : "sqlite:../sqlite/test-fiw-demo.db",
+  "connect"  : 10,			//数据库连接数量
+  "timeout"  : 30000		//数据库连接超时时间
+}
